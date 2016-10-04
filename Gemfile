@@ -21,6 +21,7 @@ group :development do
   # module documentation
   gem 'octokit', '~> 4.0'
   # rails-upgrade staging gems
+  gem 'rails', '~> 4.2', '>= 4.2.7.1'
 end
 
 group :development, :test do
