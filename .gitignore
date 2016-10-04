@@ -85,3 +85,5 @@ data/meterpreter/ext_server_pivot.*.dll
 # https://rapid7.github.io/metasploit-framework. It's an orphan branch.
 /metakitty
 .vagrant
+
+config/secrets.yml
