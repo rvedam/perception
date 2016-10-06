@@ -11,8 +11,6 @@ Bug tracking and development information can be found at:
 New bugs and feature requests should be directed to:
   https://github.com/CriticalSecurity/perception/issues
 
-Questions and suggestions can be sent to:
-  https://lists.sourceforge.net/lists/listinfo/metasploit-hackers
 
 Installing
 --
