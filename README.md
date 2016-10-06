@@ -1,6 +1,6 @@
 Perception
 ==
-Perception is built on The Metasploit Framework and is released under a BSD-style license. See
+Perception is built on The Metasploit Framework and is released under the same a BSD-style license. See
 COPYING for more details.
 
 The latest version of this software is available from: https://cri7ical.com
