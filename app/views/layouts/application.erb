@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Perception</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+  <%= csrf_meta_tags %>
+
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+<body class="page-header-fixed-mobile page-quick-sidebar-over-content">
+
+<!-- BEGIN MAIN LAYOUT -->
+<div class="wrapper">
+  <!-- Header BEGIN -->
+  <header class="page-header">
+    <nav class="navbar mega-menu" role="navigation">
+      <div class="container-fluid">
+        <div class="clearfix navbar-fixed-top">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="sr-only">Toggle navigation</span> <span class="toggle-icon"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </span> </button>
+          <!-- End Toggle Button -->
+
+          <!-- BEGIN LOGO -->
+          <a id="index" class="page-logo" href="<%= root_path %>"> <img src="images/logo.png" alt="Logo"> </a>
+          <!-- END LOGO -->
+
+
+          <!-- BEGIN TOP NAV -->
+          <div class="topbar-actions">
+            <div class="topbar-group btn-group"><a href="#"> Logged In As JLawrence@mysite.com</a></div>
+
+            <div class="topbar-group btn-group"><a href="#"> Licensing</a></div>
+
+            <div class="topbar-group btn-group">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> SYSLOG</a>
+              <ul class="dropdown-menu-v2" role="menu">
+                <li> <a href="#">Daemons  <span class="badge badge-danger">1</span></a> </li>
+                <li> <a href="#">Ports</a> </li>
+                <li> <a href="#">Hosts</a> </li>
+              </ul>
+            </div>
+
+            <div class="topbar-group btn-group">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> API</a>
+              <ul class="dropdown-menu-v2" role="menu">
+                <li> <a href="#">ConnectWise  <span class="badge badge-danger">1</span></a> </li>
+                <li> <a href="#">Microsoft System Center</a> </li>
+                <li> <a href="#">Spiceworks  <span class="badge badge-info">3</span></a> </li>
+                <li> <a href="#">Cisco ASA</a> </li>
+              </ul>
+            </div>
+
+
+            <div class="topbar-group btn-group"><a href="#">Network Time</a></div>
+
+            <div class="topbar-group btn-group">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Snort IPS</a>
+              <ul class="dropdown-menu-v2" role="menu">
+                <li> <a href="#">TALOS rules</a> </li>
+                <li> <a href="#">Emerging Threats Rules</a> </li>
+                <li> <a href="#">Update Frequency</a> </li>
+              </ul>
+            </div>
+            <div class="topbar-group btn-group"><a href="#"> Log Out</a></div>
+
+          </div>
+          <!-- END TOP NAV -->
+
+          <!-- BEGIN SEARCH -->
+          <form class="search" action="#" method="GET">
+            <input type="name" class="form-control" name="query" placeholder="Search...">
+            <a href="javascript:;" class="btn submit"><i class="fa fa-search"></i></a>
+          </form>
+          <!-- END SEARCH -->
+
+
+          <!--BEGIN NAV-->
+          <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav text-uppercase">
+              <li class="dropdown dropdown-fw <% if current_page?('/') || current_page?('/dashboard/index') %> open selected <% end %>"> <a href="javascript:;"> Dashboards </a>
+                <ul class="dropdown-menu dropdown-menu-fw">
+                  <li><a href="<%= root_path %>">Overview</a></li>
+                  <li><a href="#">Assets</a></li>
+                  <li><a href="#">Vulnerabilities</a></li>
+                  <li><a href="#">Products</a></li>
+                  <li><a href="#">User Maps</a>
+                  </li><li><a href="#">Network Maps</a></li>
+                  <li><a href="#">Exploitation Maps</a></li>
+                </ul>
+              </li>
+              <li class="dropdown dropdown-fw"> <a href="javascript:;"> Reports </a>
+                <ul class="dropdown-menu dropdown-menu-fw">
+                  <li class="active"><a href="#">Overview</a></li>
+                  <li><a href="#">IPS</a></li>
+                  <li><a href="#">Firewall</a></li>
+                  <li><a href="#">Perception</a></li>
+                  <li class="dropdown more-dropdown-sub"> <a href="javascript:;" data-close-others="true"> Optional Dropdown </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="javascript:;">Page</a></li>
+                      <li><a href="javascript:;">Page</a></li>
+                      <li><a href="javascript:;">Page</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown dropdown-fw"> <a href="javascript:;"> Settings </a>
+                <ul class="dropdown-menu dropdown-menu-fw">
+                  <li><a href="#">Perception</a></li>
+                  <li><a href="#">VSENSOR</a></li>
+                  <li><a href="#">Firewall</a></li>
+                  <li><a href="#">Microsoft System Center</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- END NAV -->
+        </div><!--end navbar fixed-->
+
+      </div><!--/container-->
+    </nav>
+  </header>
+  <!-- Header END -->
+
+  <!-- Page Content BEGIN -->
+  <div class="container-fluid">
+    <div class="page-content">
+
+      <!-- BEGIN Portlet PORTLET-->
+
+      <%= yield %>
+
+      <!-- Page Content END -->
+    </div>
+
+    <!-- Copyright BEGIN -->
+    <p class="copyright">2015 ©  <a href="http://www.insecure-it.com/" title="" target="_blank"> CriticalSecurity, LLC</a></p>
+    <!-- Copyright END -->
+  </div>
+</div>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+  jQuery(document).ready(function() {
+    InfoSec.init();
+    Layout.init();
+    ServiceAccount.init();
+    SnmpInfo.init();
+    AddSchedule.init();
+    //Assets.init();
+    Overview.init();
+  });
+</script>
+<!-- END JAVASCRIPTS -->
+
+</body>
+</html>
