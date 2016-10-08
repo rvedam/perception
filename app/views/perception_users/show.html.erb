@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @perception_user.fullname %>
+</p>
+
+<p>
+  <strong>User Name:</strong>
+  <%= @perception_user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @perception_user.email %>
+</p>
+
+<p>
+  <strong>Company Name:</strong>
+  <%= @perception_user.company %>
+</p>
+
+<%= link_to 'Edit', edit_perception_user_path(@perception_user) %> |
+<%= link_to 'Back', perception_users_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Perception Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>User Name</th>
+      <th>Email</th>
+      <th>Company Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @perception_users.each do |perception_user| %>
+      <tr>
+        <td><%= perception_user.fullname %></td>
+        <td><%= perception_user.username %></td>
+        <td><%= perception_user.email %></td>
+        <td><%= perception_user.company %></td>
+        <td><%= link_to 'Show', perception_user %></td>
+        <td><%= link_to 'Edit', edit_perception_user_path(perception_user) %></td>
+        <td><%= link_to 'Destroy', perception_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Perception user', new_perception_user_path %>

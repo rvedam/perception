@@ -1,0 +1,1 @@
+json.array! @perception_users, partial: 'perception_users/perception_user', as: :perception_user

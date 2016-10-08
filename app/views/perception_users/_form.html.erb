@@ -1,0 +1,58 @@
+<%= form_for(@perception_user) do |f| %>
+  <% if @perception_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@perception_user.errors.count, "error") %> prohibited this perception_user from being saved:</h2>
+
+      <ul>
+      <% @perception_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <form class="perception-user-form">
+      <p class="hint">
+        Enter your personal details below:
+      </p>
+
+      <div class="form-group">
+        <%= f.text_field :fullname, :class=> 'form-control placeholder-no-fix', :type=>'text', :placeholder=>'Full Name' %>
+      </div>
+
+      <div class="form-group">
+        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+        <%= f.text_field :email, :class=> 'form-control placeholder-no-fix', :type=>'text', :placeholder=>'Email' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :username, :class=> 'form-control placeholder-no-fix', :type=>'text', :placeholder=>'Username' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :password, :class=> 'form-control placeholder-no-fix', :type=>'password', :placeholder=>'Password' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :password_confirmation, :class=> 'form-control placeholder-no-fix', :type=>'password', :placeholder=>'Confirm Password' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :company, :class=> 'form-control placeholder-no-fix', :type=>'text', :placeholder=>'Company Name' %>
+      </div>
+
+      <div class="form-group margin-top-20 margin-bottom-20">
+        <label class="check">
+          <input type="checkbox" name="tnc"/> I agree to the <a href="javascript:;">Terms of Service </a>& <a href="javascript:;">Privacy Policy </a>
+        </label>
+        <div id="register_tnc_error">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= link_to 'Back', perception_users_path, :class=>'btn btn-default', :type=>'button' %>
+        <button type="submit" id="register-submit-btn" class="btn blue uppercase pull-right">Submit<% f.submit %></button>
+      </div>
+    </form>
+
+<% end %>

@@ -1,0 +1,1 @@
+json.partial! "perception_users/perception_user", perception_user: @perception_user
