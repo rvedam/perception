@@ -1002,6 +1002,9 @@ a:hover {
     color: #5b9bd1;
     text-decoration:none
 }
+
+a:visited { background-color: #3175af; }
+
 a:focus, a:hover, a:active {
     outline: 0;
 }
