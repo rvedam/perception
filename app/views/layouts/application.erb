@@ -14,6 +14,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
 
   <%= csrf_meta_tags %>
 
@@ -21,21 +23,23 @@
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
-<body class="page-header-fixed-mobile page-quick-sidebar-over-content">
+<body <%  if  controller.controller_name == 'logins' %> class="login"<%  else %> class="page-header-fixed-mobile page-quick-sidebar-over-content" <%  end %>>
 
 <!-- BEGIN MAIN LAYOUT -->
 <div class="wrapper">
   <!-- Header BEGIN -->
+  <%  unless  controller.controller_name == 'logins' %>
   <header class="page-header">
     <nav class="navbar mega-menu" role="navigation">
       <div class="container-fluid">
+
         <div class="clearfix navbar-fixed-top">
           <!-- Brand and toggle get grouped for better mobile display -->
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="sr-only">Toggle navigation</span> <span class="toggle-icon"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </span> </button>
           <!-- End Toggle Button -->
 
           <!-- BEGIN LOGO -->
-          <a id="index" class="page-logo" href="<%= root_path %>"> <img src="images/logo.png" alt="Logo"> </a>
+          <a id="index" class="page-logo" href="<%= root_path %>"> <%= image_tag('logo.png')%> </a>
           <!-- END LOGO -->
 
 
@@ -68,9 +72,9 @@
             <div class="topbar-group btn-group"><a href="#">Network Time</a></div>
 
             <div class="topbar-group btn-group">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Snort IPS</a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Administration</a>
               <ul class="dropdown-menu-v2" role="menu">
-                <li> <a href="#">TALOS rules</a> </li>
+                <li> <a href="<%=	 perception_users_path %>">Add Users</a> </li>
                 <li> <a href="#">Emerging Threats Rules</a> </li>
                 <li> <a href="#">Update Frequency</a> </li>
               </ul>
@@ -91,9 +95,11 @@
           <!--BEGIN NAV-->
           <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav text-uppercase">
-              <li class="dropdown dropdown-fw <% if current_page?('/') || current_page?('/dashboard/index') %> open selected <% end %>"> <a href="javascript:;"> Dashboards </a>
+              <li class="dropdown dropdown-fw <% if controller.controller_name == 'dashboards' %>
+                     open <% end %>"> <a href="javascript:;"> Dashboards </a>
                 <ul class="dropdown-menu dropdown-menu-fw">
-                  <li><a href="<%= root_path %>">Overview</a></li>
+                  <li<% if controller.controller_name == 'dashboards'%>
+                     class="active" <% end %>><a href="<%= root_path %>">Overview</a></li>
                   <li><a href="#">Assets</a></li>
                   <li><a href="#">Vulnerabilities</a></li>
                   <li><a href="#">Products</a></li>
@@ -117,9 +123,11 @@
                   </li>
                 </ul>
               </li>
-              <li class="dropdown dropdown-fw"> <a href="javascript:;"> Settings </a>
+              <li class="dropdown dropdown-fw <% if controller.controller_name == 'perception_users'%>
+                  open <% end %>"> <a href="javascript:;"> Settings </a>
                 <ul class="dropdown-menu dropdown-menu-fw">
-                  <li><a href="#">Perception</a></li>
+                  <li <% if controller.controller_name == 'perception_users'%>
+                  class="active" <% end %>><a href="#">Perception</a></li>
                   <li><a href="#">VSENSOR</a></li>
                   <li><a href="#">Firewall</a></li>
                   <li><a href="#">Microsoft System Center</a></li>
@@ -133,21 +141,37 @@
       </div><!--/container-->
     </nav>
   </header>
+  <%  end %>
   <!-- Header END -->
+
+  <%  if  controller.controller_name == 'logins' %>
+      <div class="logo"><a href="<%= root_path %>">	<%= image_tag('logo.png')%> </a></div>
+  <%  end %>
 
   <!-- Page Content BEGIN -->
   <div class="container-fluid">
-    <div class="page-content">
+    <%  if  controller.controller_name == 'logins' %>
+        <div class="content">
+          <!-- BEGIN Portlet PORTLET-->
 
-      <!-- BEGIN Portlet PORTLET-->
+          <%= yield %>
 
-      <%= yield %>
+          <!-- Page Content END -->
+        </div>
+    <%  else %>
+        <div class="page-content">
+          <!-- BEGIN Portlet PORTLET-->
 
-      <!-- Page Content END -->
+          <%= yield %>
+
+          <!-- Page Content END -->
+    <%  end %>
+
+
     </div>
 
     <!-- Copyright BEGIN -->
-    <p class="copyright">2015 ©  <a href="http://www.insecure-it.com/" title="" target="_blank"> CriticalSecurity, LLC</a></p>
+    <p class="copyright">2017 ©  <a href="http://www.insecure-it.com/" title="" target="_blank"> CriticalSecurity, LLC</a></p>
     <!-- Copyright END -->
   </div>
 </div>
@@ -161,6 +185,8 @@
     SnmpInfo.init();
     AddSchedule.init();
     //Assets.init();
+    PerceptionUser.init();
+    Login.init();
     Overview.init();
   });
 </script>
